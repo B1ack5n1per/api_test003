@@ -43,7 +43,7 @@ $(document).ready(() => {
     image = document.getElementById('image').value;
     $('#template').attr('src', image);
   });
-  $(document).on('keypress', () => {
+  $(document).on('keydown', () => {
     setTimeout(() => {
       name = document.getElementById('title').value;
       $('.text').html(name);

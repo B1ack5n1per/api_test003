@@ -28,6 +28,7 @@ a {
 
 #brand a {
   font-size: 2rem;
+  color: var(--White);
 }
 #navbar div {
   display: inline;
@@ -75,7 +76,17 @@ a:hover {
   animation: spinner 1s linear infinite;
 }
 
-@media (max-width: 700px) {
+.submit {
+  background: var(--Dark);
+  color: var(--Light);
+  border: none;
+  font-size: 1.5rem;
+  border-radius: 2.5px;
+  margin: 1rem auto;
+  display: block;
+}
+
+@media (max-width: 635px) {
   #login {
     display: none;
   }

@@ -19,18 +19,14 @@ input {
 
 .title {
   height: 19px;
+  min-width: 10rem;
+  width: calc(25% - 2rem);
 }
 
 .image {
   margin-bottom: 2rem;
-}
-
-.submit {
-  background: var(--Dark);
-  color: var(--Light);
-  border: none;
-  font-size: 1.5rem;
-  border-radius: 2.5px;
+  min-width: 10rem;
+  width: calc(25% - 2rem);
 }
 
 .space {
@@ -41,7 +37,7 @@ input {
 
 #template {
   height: auto;
-  width: calc(100% - 3rem - 196px);
+  width: calc(50% - 2rem);
   border-radius: 5px;
   box-shadow: 2px 2px #4e4e4e;
   display: inline;
@@ -60,6 +56,11 @@ input {
 .titleContainer {
   display: flex;
   flex-direction: row;
+  margin-bottom: 5rem;
+}
+
+.form p {
+  margin-bottom: 3rem;
 }
 
 #spinner:before {

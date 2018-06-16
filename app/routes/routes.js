@@ -9,14 +9,22 @@ module.exports = function (app, db) {
 
   app.post('/login', (req, res) => {
     const account = req.body;
-    let details = { username: account.user };
+    let details = {
+      username: account.user,
+    };
     console.log(account);
     db.collection('acounts').findOne(details, (err, results) => {
-      key = results.password;
-      console.log(results);
-      if (account.password == key) {
-        res.send('200');
-        console.log('success');
+      if (results) {
+        key = results.password;
+        console.log(results);
+        if (account.password == key) {
+          res.send('200');
+          console.log('success');
+        } else {
+          res.send('Error');
+        };
+      } else {
+        res.send('Error');
       };
     });
 

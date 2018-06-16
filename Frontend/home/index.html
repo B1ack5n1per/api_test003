@@ -22,16 +22,23 @@
     <a class="item" id="list" href="#">List</a>
     <a class="item" id="submit" href="../submit">Submit</a>
     <a class="item" id="Profile" href="#">Profile</a>
-    <a href="#" class="item" id="login">Login/Sign in</a>
+    <a href="#" class="item" id="login">Login/Sign up</a>
   </nav>
   <div id="spinner"></div>
   <div class="container">
   </div>
   <br>
   <div class="login">
-    <input type="text" id="username" value="Username">
-    <input type="text" id="password" value="Password">
+    <a href="#" id="exit">
+      <div class="exit">+</div>
+    </a>
+    <h1 class="log-title">Login</h1>
+    <input type="text" id="username" class="fillout" placeholder="Username">
+    <input type="password" id="password" class="fillout" placeholder="Password">
+    <p id="error"></p>
+    <input type="submit" class="submit">
   </div>
+  <div class="dark"></div>
 </body>
 
 </html>
