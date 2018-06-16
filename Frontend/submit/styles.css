@@ -7,7 +7,7 @@
   padding: 1rem 2rem;
 }
 
-.heading{
+.heading {
   text-align: center;
   margin-bottom: -0.5rem;
 }
@@ -15,6 +15,10 @@
 input {
   padding: 0.25rem 0.5rem;
   font-size: 1rem;
+}
+
+.title {
+  height: 19px;
 }
 
 .image {
@@ -30,7 +34,34 @@ input {
 }
 
 .space {
-  height:4rem;
-  display:inline;
+  height: 4rem;
+  display: inline;
   margin-bottom: 4rem
+}
+
+#template {
+  height: auto;
+  width: calc(100% - 3rem - 196px);
+  border-radius: 5px;
+  box-shadow: 2px 2px #4e4e4e;
+  display: inline;
+  margin: 1rem;
+  margin-top: 0;
+  overflow: hidden;
+  background: var(--Medium);
+  vertical-align:top;
+}
+
+.text {
+  display:inline;
+  margin-left: 1rem;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+#spinner:before {
+  top: auto !important;
 }

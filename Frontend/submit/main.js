@@ -1,6 +1,7 @@
 var name;
 var image;
 var send;
+
 function set() {
   name = document.getElementById('title').value;
   image = document.getElementById('image').value;
@@ -10,6 +11,7 @@ function set() {
   };
   console.log(send);
   if (name.length > 0 && image.length > 0) {
+    $('#spinner').css('display', 'block');
     $.ajax({
       method: 'POST',
       url: '/add',
@@ -36,12 +38,21 @@ function setup() {
 };
 
 $(document).ready(() => {
-  $('#template').attr('src', image);
+  $('#spinner').css('display', 'none');
+  $('#image').on('blur', () => {
+    image = document.getElementById('image').value;
+    $('#template').attr('src', image);
+  });
+  $(document).on('keypress', () => {
+    setTimeout(() => {
+      name = document.getElementById('title').value;
+      $('.text').html(name);
+    }, 100);
+  });
   $('.submit').on('click', () => {
     if ($('.submit').is(':focus')) {
       $('.submit').css('background', 'var(--Dark');
       $('.submit').trigger('blur');
-      console.log('fire');
       set();
     };
   });

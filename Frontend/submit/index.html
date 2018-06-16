@@ -28,15 +28,18 @@
     <h1 class="heading">Submit Your Favourite Anime!</h1>
     <p class="heading">Before adding an anime please ensure that it has not already on the list</p>
     <h3>Title:</h3>
-    <input type="text" class="title" id="title" placeholder="Title">
+    <div class="titleContainer">
+      <input type="text" class="title" id="title" placeholder="Title">
+      <h1 class="text"></h1>
+    </div>
     <h3>Image:</h3>
     <p>Please put a link to an image that will serve as an icon for your anime. A square image will work best</p>
     <input type="text" class="image" id="image" placeholder="Image URL">
     <img src="" alt="" id="template">
     <br>
     <input type="submit" class="submit">
-    <div class="space"></div>
   </div>
+  <div id="spinner"></div>
 </body>
 
 </html>
