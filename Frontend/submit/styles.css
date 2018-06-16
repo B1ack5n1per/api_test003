@@ -1,0 +1,36 @@
+.form {
+  width: calc(100% - 10rem);
+  margin: 3rem auto;
+  background: var(--Light);
+  border-radius: 5px;
+  box-shadow: 3px 3px var(--Dark);
+  padding: 1rem 2rem;
+}
+
+.heading{
+  text-align: center;
+  margin-bottom: -0.5rem;
+}
+
+input {
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+}
+
+.image {
+  margin-bottom: 2rem;
+}
+
+.submit {
+  background: var(--Dark);
+  color: var(--Light);
+  border: none;
+  font-size: 1.5rem;
+  border-radius: 2.5px;
+}
+
+.space {
+  height:4rem;
+  display:inline;
+  margin-bottom: 4rem
+}
