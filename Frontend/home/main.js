@@ -1,8 +1,14 @@
-var data;
+var datai;
+var sending = {
+  user: 'Taylor',
+  password: 'B1ack5niper',
+};
 
-function add(data) {
-  for (let i = 0; i < data.length; i++) {
-    $('.container').append('<div class="content"> <img src = "' + data[i].thumbnail + '"alt = ""class = "thumbnail" > <div class="contents"><h3 class = "title" >' + data[i].title + '</h3> <h1 class = "votes" > <span>Rank: </span>' + (i + 1) + '</h1></div> </div>');
+var username = $('#username');
+var password = $('#password');
+function add(datas) {
+  for (let i = 0; i < datas.length; i++) {
+    $('.container').append('<div class="content"> <img src = "' + datas[i].thumbnail + '"alt = ""class = "thumbnail" > <div class="contents"><h3 class = "title" >' + datas[i].title + '</h3> <h1 class = "votes" > <span>Rank: </span>' + (i + 1) + '</h1></div> </div>');
   };
 };
 
@@ -21,20 +27,28 @@ $(document).ready(() => {
     type: 'GET',
     url: '/anime',
     success: (res) => {
-      data = res;
-      sorts(data);
-      add(data);
+      $('#spinner').css('display', 'none');
+      datai = res;
+      sorts(datai);
+      add(datai);
     },
   });
 
   $('#login').on('click', () => {
     $.ajax({
-      type: 'GET',
+      method: 'POST',
       url: '/login',
+      headers: {
+        contentType: 'application/json',
+      },
+      data: sending,
       success: (res) => {
         console.log(res);
+        if (res == 200) {
+          alert('welcome');
+        };
       },
     });
+    console.log(username + ' ' + password);
   });
-
 });
