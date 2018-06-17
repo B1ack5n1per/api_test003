@@ -14,6 +14,7 @@
 <body>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="submit.js" charset="utf-8"></script>
+  <script src="global.js" charset="utf-8"></script>
 
   <nav id="navbar">
     <div id="brand">
@@ -22,7 +23,7 @@
     <a class="item" id="list" href="../home">List</a>
     <a class="item" id="submit" href="#">Submit</a>
     <a class="item" id="Profile" href="#">Profile</a>
-    <a href="#" class="item" id="login">Login/Sign in</a>
+    <a href="#" class="item" id="login">Login/Sign up</a>
   </nav>
   <div class="form">
     <h1 class="heading">Submit Your Favourite Anime!</h1>
@@ -40,6 +41,17 @@
     <input type="submit" class="submit">
   </div>
   <div id="spinner"></div>
+  <div class="login">
+    <a href="#" id="exit">
+      <div class="exit">+</div>
+    </a>
+    <h1 class="log-title">Login</h1>
+    <input type="text" id="username" class="fillout" placeholder="Username">
+    <input type="password" id="password" class="fillout" placeholder="Password">
+    <p id="error"></p>
+    <input type="submit" class="submit-log">
+  </div>
+  <div class="dark"></div>
 </body>
 
 </html>

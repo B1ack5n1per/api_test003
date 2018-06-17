@@ -1,6 +1,33 @@
 var name;
 var image;
 var send;
+var username;
+var password;
+var sending = {};
+
+function login() {
+
+  sending.user = username;
+  sending.password = password;
+  console.log(sending);
+  $.ajax({
+    method: 'POST',
+    url: '/login',
+    headers: {
+      contentType: 'application/json',
+    },
+    data: sending,
+    success: (res) => {
+      console.log(res);
+      if (res == 200) {
+        alert('welcome');
+        $('#error').html('');
+      } else {
+        $('#error').html('Invalid Username or Password');
+      };
+    },
+  });
+};
 
 function set() {
   name = document.getElementById('title').value;
@@ -66,4 +93,5 @@ $(document).ready(() => {
   $('.submit').on('blur', () => {
     $('.submit').css('background', 'var(--Dark)');
   });
+
 });
