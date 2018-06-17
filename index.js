@@ -34,6 +34,9 @@ app.get('/submit.css', (req, res) => {
 app.get('/submit.js', (req, res) => {
   res.sendFile(path.join(__dirname + '/Frontend/submit/main.js'));
 });
+app.get('/global.js', (req, res) => {
+  res.sendFile(path.join(__dirname + '/Frontend/global_scripts.js'));
+});
 
 MongoClient.connect(db.url, (err, database) => {
   if (err) return console.log(err);
