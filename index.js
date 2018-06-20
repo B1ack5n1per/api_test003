@@ -12,7 +12,10 @@ function init() {
   console.log('Server started on port:' + 3000);
 };
 
+app.use(express.static(path.join(__dirname, 'Frontend')));
+
 app.use(bodyParser.urlencoded({ extended: true }));
+/*
 app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname + '/Frontend/home/index.html'));
 });
@@ -37,6 +40,16 @@ app.get('/submit.js', (req, res) => {
 app.get('/global.js', (req, res) => {
   res.sendFile(path.join(__dirname + '/Frontend/global_scripts.js'));
 });
+app.get('/profile', (req, res) => {
+  res.sendFile(path.join(__dirname + '/Frontend/profile/index.html'));
+});
+app.get('/profile.css', (req, res) => {
+  res.sendFile(path.join(__dirname + '/Frontend/profile/styles.css'));
+});
+app.get('/profile.js', (req, res) => {
+  res.sendFile(path.join(__dirname + '/Frontend/profile/main.js'));
+});
+*/
 
 MongoClient.connect(db.url, (err, database) => {
   if (err) return console.log(err);
