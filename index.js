@@ -14,7 +14,7 @@ function init() {
   console.log('Server started on port:' + 3000);
 };
 
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'Frontend')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
