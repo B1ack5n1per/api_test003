@@ -17,6 +17,9 @@ function init() {
 app.use(favicon(path.join(__dirname, 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'Frontend')));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.get('/favicon.ico', (req, res) => {
+  res.send(path.join(__dirname, 'favicon.ico'));
+});
 
 MongoClient.connect(db.url, (err, database) => {
   if (err) return console.log(err);
