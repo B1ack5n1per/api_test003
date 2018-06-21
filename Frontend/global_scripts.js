@@ -28,7 +28,7 @@ function login() {
 };
 
 $(document).ready(() => {
-  $('body').prepend('<nav id="navbar"><div id="brand"> <a href="#">Anime</a></div><a class="item" id="list" href="../home">List</a><a class="item" id="submit" href="../submit">Submit</a><a class="item" id="Profile" href="../profile">Profile</a><a href="#" class="item none" id="login">Login/Sign up</a><a href="#" class="item none" id="logout">Logout</a></nav><div class="login"><a href="#" id="exit">  <div class="exit">+</div></a><h1 class="log-title">Login</h1><input type="text" id="username" class="fillout" placeholder="Username"><input type="password" id="password" class="fillout" placeholder="Password"><p id="error"></p><input type="submit" class="submit-log"></div><div class="dark"></div>');
+  $('body').prepend('<nav id="navbar"><div id="brand"> <a href="#">Anime</a></div><a class="item" id="list" href="../home">List</a><a class="item" id="submit" href="../submit">Submit</a><a class="item" id="Profile" href="../profile">Profile</a><a href="#" class="item none" id="login">Login/Sign up</a><a href="#" class="item none" id="logout">Logout</a></nav><div class="login"><a href="#" id="exit">  <div class="exit">+</div></a><h1 class="log-title">Login</h1><input type="text" id="username"class="fillout" placeholder="Username"><input type="password" id="password" class="fillout" placeholder="Password"><p id="error"></p><input type="submit" class="submit-log log"><br/><hr/><br/><form action="/register"><h1 class="signup log-title">Sign Up</h1><input type="text" class="fillout" name="username" placeholder="Username"><input type="email" class="fillout" name="email" placeholder="Email"><input type="text" class="fillout" name="password" placeholder="Password"><input type="text" class="fillout" name="confirm" placeholder="Confirm Password"><input type="submit" class="submit-log"></form></div><div class="dark"></div>');
   if (document.cookie) {
     $('#login').addClass('none');
     $('#logout').removeClass('none');
@@ -39,25 +39,25 @@ $(document).ready(() => {
   };
 
   //Submit login
-  $('.submit-log').on('click', () => {
-    if ($('.submit-log').is(':focus')) {
-      $('.submit-log').css('background', 'var(--Dark');
-      $('.submit-log').trigger('blur');
+  $('.log').on('click', () => {
+    if ($('.log').is(':focus')) {
+      $('.log').css('background', 'var(--Dark');
+      $('.log').trigger('blur');
       username = document.getElementById('username').value;
       password = document.getElementById('password').value;
       login();
       console.log(username + ' ' + password);
     };
   });
-  $('.submit-log').on('focus', () => {
-    $('.submit-log').css('background', 'var(--Primary');
+  $('.log').on('focus', () => {
+    $('.log').css('background', 'var(--Primary');
     setTimeout(() => {
-      $('.submit-log').css('background', 'var(--Dark');
-      $('.submit-log').trigger('blur');
+      $('.log').css('background', 'var(--Dark');
+      $('.log').trigger('blur');
     }, 1000);
   });
-  $('.submit-log').on('blur', () => {
-    $('.submit-log').css('background', 'var(--Dark)');
+  $('.log').on('blur', () => {
+    $('.log').css('background', 'var(--Dark)');
   });
 
   //Show login

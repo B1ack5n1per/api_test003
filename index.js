@@ -8,6 +8,16 @@ const fs = require('fs');
 const jsonParser = bodyParser.json();
 const port = process.env.PORT || 3000;
 const favicon = require('serve-favicon');
+const nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'taylorwong159@gmail.com',
+    pass: 'bananamonkey',
+  },
+});
+
 var app = express();
 
 function init() {
