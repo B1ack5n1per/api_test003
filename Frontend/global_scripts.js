@@ -28,6 +28,7 @@ function login() {
 };
 
 $(document).ready(() => {
+  $('body').prepend('<nav id="navbar"><div id="brand"> <a href="#">Anime</a></div><a class="item" id="list" href="../home">List</a><a class="item" id="submit" href="../submit">Submit</a><a class="item" id="Profile" href="../profile">Profile</a><a href="#" class="item none" id="login">Login/Sign up</a><a href="#" class="item none" id="logout">Logout</a></nav><div class="login"><a href="#" id="exit">  <div class="exit">+</div></a><h1 class="log-title">Login</h1><input type="text" id="username" class="fillout" placeholder="Username"><input type="password" id="password" class="fillout" placeholder="Password"><p id="error"></p><input type="submit" class="submit-log"></div><div class="dark"></div>');
   if (document.cookie) {
     $('#login').addClass('none');
     $('#logout').removeClass('none');
@@ -37,6 +38,7 @@ $(document).ready(() => {
     $('#logout').addClass('none');
   };
 
+  //Submit login
   $('.submit-log').on('click', () => {
     if ($('.submit-log').is(':focus')) {
       $('.submit-log').css('background', 'var(--Dark');
@@ -57,6 +59,8 @@ $(document).ready(() => {
   $('.submit-log').on('blur', () => {
     $('.submit-log').css('background', 'var(--Dark)');
   });
+
+  //Show login
   $('#login').on('click', () => {
     $('.dark').fadeIn(250);
     setTimeout(() => {
@@ -85,4 +89,5 @@ $(document).ready(() => {
         },
     });
   });
+
 });

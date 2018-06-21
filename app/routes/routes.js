@@ -68,4 +68,17 @@ module.exports = function (app, db) {
     console.log('cleared');
     res.send(detail.username);
   });
+
+  app.post('/getProfile', (req, res) => {
+    let details = req.body;
+    console.log(details);
+    db.collection('acounts').findOne(details, (err, results) => {
+      if (results) {
+        let result = results;
+        delete result.password;
+        console.log(result);
+        res.send(result);
+      };
+    });
+  });
 };
