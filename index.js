@@ -7,12 +7,14 @@ const cookieParser =  require('cookie-parser');
 const fs = require('fs');
 const jsonParser = bodyParser.json();
 const port = process.env.PORT || 3000;
+const favicon = require('serve-favicon');
 var app = express();
 
 function init() {
   console.log('Server started on port:' + 3000);
 };
 
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'Frontend')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
