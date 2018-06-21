@@ -60,6 +60,17 @@ a:hover {
   font-size: 1rem;
 }
 
+.none {
+  display: none;
+}
+
+#logout {
+  float: right;
+  margin: auto 2rem;
+  margin-left: 1rem;
+  font-size: 1rem;
+}
+
 #spinner:before {
   content: "";
   box-sizing: border-box;
@@ -103,6 +114,10 @@ a:hover {
 
 @media (max-width: 595px) {
   #login {
+    display: none;
+  }
+
+  #logout {
     display: none;
   }
 }
@@ -197,7 +212,6 @@ a:hover {
 #error {
   color: var(--White);
 }
-
 
 @keyframes spinner {
   to {

@@ -1,6 +1,7 @@
 var sending = {};
 var username;
 var password;
+var account;
 
 function login() {
   sending.user = username;
@@ -16,8 +17,9 @@ function login() {
     success: (res) => {
       console.log(res);
       if (res == 200) {
-        alert('welcome');
         $('#error').html('');
+        console.log(document.cookie);
+        location.reload();
       } else {
         $('#error').html('Invalid Username or Password');
       };
@@ -26,6 +28,15 @@ function login() {
 };
 
 $(document).ready(() => {
+  if (document.cookie) {
+    $('#login').addClass('none');
+    $('#logout').removeClass('none');
+    account = document.cookie;
+  } else {
+    $('#login').removeClass('none');
+    $('#logout').addClass('none');
+  };
+
   $('.submit-log').on('click', () => {
     if ($('.submit-log').is(':focus')) {
       $('.submit-log').css('background', 'var(--Dark');
@@ -57,5 +68,21 @@ $(document).ready(() => {
     setTimeout(() => {
       $('.dark').fadeOut(150);
     }, 200);
+  });
+  $('#logout').on('click', () => {
+    $.ajax({
+      method: 'POST',
+      url: '/logout',
+      headers: {
+        contentType: 'application/json',
+      },
+      data: {
+        cookies: document.cookie,
+      },
+      success: (res) => {
+          alert('Goodbye ' + res);
+          location.reload();
+        },
+    });
   });
 });

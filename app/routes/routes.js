@@ -1,6 +1,19 @@
 var key;
+function parse(str) {
+  str = str.split(', ');
+  var result = {};
+  for (var i = 0; i < str.length; i++) {
+    var cur = str[i].split('=');
+    result[cur[0]] = cur[1];
+  };
+
+  return result;
+};
 
 module.exports = function (app, db) {
+  const cookieParser = require('cookie-parser');
+  app.use(cookieParser());
+
   app.get('/anime', (req, res) => {
     var cursor = db.collection('anime').find().toArray((err, results) => {
       res.send(results);
@@ -9,7 +22,7 @@ module.exports = function (app, db) {
 
   app.post('/login', (req, res) => {
     const account = req.body;
-    let details = {
+    details = {
       username: account.user,
     };
     console.log(account);
@@ -18,6 +31,7 @@ module.exports = function (app, db) {
         key = results.password;
         console.log(results);
         if (account.password == key) {
+          res.cookie('username=' + details.username + '; path=/');
           res.send('200');
           console.log('success');
         } else {
@@ -44,5 +58,14 @@ module.exports = function (app, db) {
       });
       console.log(details);
     });
+  });
+
+  app.post('/logout', (req, res) => {
+    let detail = req.body.cookies;
+    detail = parse(detail);
+    console.log(detail);
+    res.clearCookie('username');
+    console.log('cleared');
+    res.send(detail.username);
   });
 };

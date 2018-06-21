@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const path = require('path');
 const db = require('./config/db');
+const cookieParser =  require('cookie-parser');
 const fs = require('fs');
 const jsonParser = bodyParser.json();
 
