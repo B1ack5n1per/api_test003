@@ -1,4 +1,5 @@
 var key;
+
 function parse(str) {
   str = str.split(', ');
   var result = {};
@@ -13,13 +14,11 @@ function parse(str) {
 module.exports = function (app, db) {
   const cookieParser = require('cookie-parser');
   app.use(cookieParser());
-
   app.get('/anime', (req, res) => {
     var cursor = db.collection('anime').find().toArray((err, results) => {
       res.send(results);
     });
   });
-
   app.post('/login', (req, res) => {
     const account = req.body;
     details = {
@@ -43,7 +42,6 @@ module.exports = function (app, db) {
     });
 
   });
-
   app.post('/add', (req, res) => {
     let details = req.body;
     details.votes = 0;
@@ -59,7 +57,6 @@ module.exports = function (app, db) {
       console.log(details);
     });
   });
-
   app.post('/logout', (req, res) => {
     let detail = req.body.cookies;
     detail = parse(detail);
@@ -68,7 +65,6 @@ module.exports = function (app, db) {
     console.log('cleared');
     res.send(detail.username);
   });
-
   app.post('/getProfile', (req, res) => {
     let details = req.body;
     console.log(details);
@@ -80,5 +76,32 @@ module.exports = function (app, db) {
         res.send(result);
       };
     });
+  });
+  app.post('/register', (req, res) => {
+    let details = req.body;
+    let query = {
+      username: details.username,
+    };
+    let detail = {
+      username: details.username,
+      password: details.password,
+      vote_id: 0,
+      email: details.email,
+      admin: false,
+    };
+    if (details.password === details.confirm) {
+      db.collection('acounts').findOne(query, (err, results) => {
+        console.log(results);
+        if (results === null) {
+          db.collection('acounts').insert(detail, (err, results) => {
+            res.send(results.ops[0]);
+          });
+        } else {
+          res.send('Username Taken');
+        };
+      });
+    } else {
+      res.send('error');
+    };
   });
 };
