@@ -74,6 +74,7 @@ a:hover {
 }
 
 #spinner:before {
+  z-index: 2;
   content: "";
   box-sizing: border-box;
   position: absolute;
@@ -150,7 +151,7 @@ a:hover {
   margin: 3rem auto;
   border-radius: 7px;
   padding: 1rem;
-  z-index: 3;
+  z-index: 4;
 }
 
 .fillout {
@@ -211,7 +212,7 @@ hr {
   top:0;
   right:0;
   background: black;
-  z-index: 2;
+  z-index: 3;
   filter: opacity(80%);
   display:none;
   padding: 10rem;

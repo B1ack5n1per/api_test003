@@ -48,7 +48,11 @@ $(document).ready(() => {
           value: i,
         }, function (event) {
           console.log(event.data.value);
-          $.ajax({
+          if (profile.username != 'Profile') {
+            $('#spinner').css('display', 'block');
+            $('.dark').css('z-index', '1');
+            $('.dark').fadeIn(0);
+            $.ajax({
               method: 'PUT',
               url: '/vote',
               headers: {
@@ -59,9 +63,15 @@ $(document).ready(() => {
                 id: event.data.value,
               },
               success: (res) => {
-                alert('Your favourite anime was set to ' + res.title);
-              },
+                  alert('Your favourite anime was set to ' + res.title);
+                  $('.dark').fadeOut(0);
+                  $('#spinner').css('display', 'none');
+                  $('.dark').css('z-index', '3');
+                },
             });
+          } else {
+            alert('Please login to vote');
+          };
         });
       };
     },

@@ -27,7 +27,7 @@ $(document).ready(() => {
           var id = res.vote_id;
           $('#spinner').css('display', 'none');
           $('title').html(res.username);
-          $('.name').html(res.username + "'s favourite anime");
+          $('.name').html(res.username);
           $('.name').css('display', 'block');
           $.ajax({
             method: 'POST',
