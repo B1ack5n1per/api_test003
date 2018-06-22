@@ -17,8 +17,14 @@ module.exports = function (app, db) {
   app.get('/anime', (req, res) => {
     db.collection('anime').find().toArray((err, results) => {
       for (let i = 0; i < results.length; i++) {
-        db.collection('acounts').find({ vote_id: (i + 1) }).toArray((er, result) => {
-          db.collection('anime').updateOne(results[i], { $set: { votes: result.length } }, (err, resul) => {});
+        db.collection('acounts').find({
+          vote_id: (i + 1),
+        }).toArray((er, result) => {
+          db.collection('anime').updateOne(results[i], {
+            $set: {
+              votes: result.length,
+            },
+          }, (err, resul) => {});
         });
       }
 
@@ -122,5 +128,29 @@ module.exports = function (app, db) {
     } else {
       res.send('error');
     };
+  });
+  app.put('/vote', (req, res) => {
+    let voteId = req.body.id;
+    let user = req.body.username;
+    let details = {
+      username: user,
+    };
+    let detail = {
+      id: Number(voteId),
+    };
+    console.log(voteId + ' ' + user);
+    db.collection('acounts').updateOne(details, {
+      $set: {
+        vote_id: voteId,
+      },
+    }, (err, results) => {
+      if (results) {
+        console.log(detail);
+        db.collection('anime').findOne(detail, (err, result) => {
+          console.log(result);
+          res.send(result);
+        });
+      };
+    });
   });
 };

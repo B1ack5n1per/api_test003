@@ -49,8 +49,9 @@ h1 {
   display: flex;
   flex-direction: column;
 }
+
 .contents:nth-child(n) {
-  margin:auto;
+  margin: auto;
 }
 
 span {
@@ -62,7 +63,7 @@ span {
   text-align: center;
   margin: 1rem auto;
   font-size: 2.5rem;
-  font-weight:lighter;
+  font-weight: lighter;
 }
 
 .description {
@@ -76,6 +77,15 @@ span {
   margin-right: 2rem;
   font-size: 5rem;
   font-weight: lighter;
+}
+
+.vote {
+  height: auto;
+  display: inline;
+}
+
+.vote:hover {
+  color: var(--White);
 }
 
 @media (max-width: 432px) {
