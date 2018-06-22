@@ -10,6 +10,27 @@
   overflow: hidden;
 }
 
+.messages {
+  background: var(--Medium);
+  padding: 1rem;
+  width: calc(100% - 4rem);
+  margin: 1rem;
+  height: 10rem;
+  border-radius: 7px;
+}
+
+.message {
+  border: 2px solid var(--Dark);
+  background: var(--Light);
+  height: calc(100% - 2rem);
+  padding: 1rem;
+  border-radius: inherit;
+  margin-bottom: 2rem;
+}
+
+.header {
+  margin-bottom: 1rem;
+}
 
 h3 {
   margin: 0;
@@ -23,14 +44,15 @@ h1 {
   width: calc(100% - 2rem);
   height: auto;
   padding: 1rem 0;
-  margin: 0;
+  align-items: center;
+
 }
 
 .content {
   width: calc(100% - 2rem);
   height: auto;
   background: var(--Light);
-  margin: 0.5rem;
+  margin: 1rem;
   margin-top: -1rem;
   border-radius: 7px;
   padding: 1rem;

@@ -16,17 +16,19 @@ module.exports = function (app, db) {
   app.use(cookieParser());
   app.get('/anime', (req, res) => {
     db.collection('anime').find().toArray((err, results) => {
+      console.log(results.length);
       for (let i = 0; i < results.length; i++) {
-        db.collection('acounts').find({
-          vote_id: (i + 1),
-        }).toArray((er, result) => {
+        let details = { vote_id: (i + 1), };
+        console.log(details);
+        db.collection('acounts').find(details).toArray((er, result) => {
+          console.log(result.length);
           db.collection('anime').updateOne(results[i], {
             $set: {
               votes: result.length,
             },
           }, (err, resul) => {});
         });
-      }
+      };
 
       res.send(results);
     });
@@ -130,13 +132,14 @@ module.exports = function (app, db) {
     };
   });
   app.put('/vote', (req, res) => {
-    let voteId = req.body.id;
+    let voteId = Number(req.body.id);
     let user = req.body.username;
+    voteId += 1;
     let details = {
       username: user,
     };
     let detail = {
-      id: Number(voteId),
+      id: Number(voteId) + 1,
     };
     console.log(voteId + ' ' + user);
     db.collection('acounts').updateOne(details, {
@@ -145,6 +148,7 @@ module.exports = function (app, db) {
       },
     }, (err, results) => {
       if (results) {
+        detail.id = Number(detail.id) - 2;
         console.log(detail);
         db.collection('anime').findOne(detail, (err, result) => {
           console.log(result);
