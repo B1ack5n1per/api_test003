@@ -225,6 +225,31 @@ hr {
   text-decoration: underline;
 }
 
+@media (max-width: 612px) {
+  .votes {
+    display: none !important;
+  }
+  .title {
+    margin-left: 1rem !important;
+  }
+}
+
+@media (max-width: 432px) {
+  .content {
+    width: 10rem !important;
+    padding: 1rem;
+    margin: 1rem !important;
+  }
+  .content:nth-child(n) {
+    margin: 0;
+    height: 10rem;
+    width: 10rem;
+  }
+  .thumbnail {
+    margin: 0 !important;
+  }
+}
+
 @keyframes spinner {
   to {
     transform: rotate(360deg);

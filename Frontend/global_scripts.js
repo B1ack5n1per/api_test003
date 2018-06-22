@@ -4,6 +4,17 @@ var password;
 var account;
 var send = {};
 var ready = true;
+var profile = {};
+function parse(str) {
+  str = str.split(', ');
+  var result = {};
+  for (var i = 0; i < str.length; i++) {
+    var cur = str[i].split('=');
+    result[cur[0]] = cur[1];
+  };
+
+  return result;
+};
 
 function login() {
   sending.user = username;
@@ -30,7 +41,13 @@ function login() {
 };
 
 $(document).ready(() => {
-  $('body').prepend('<nav id="navbar"><div id="brand"> <a href="#">Anime</a></div><a class="item" id="list" href="../home">List</a><a class="item" id="submit" href="../submit">Submit</a><a class="item" id="Profile" href="../profile">Profile</a><a href="#" class="item none" id="login">Login/Sign up</a><a href="#" class="item none" id="logout">Logout</a></nav><div class="login"><a href="#" id="exit">  <div class="exit">+</div></a><h1 class="log-title">Login</h1><input type="text" id="username"class="fillout" placeholder="Username"><input type="password" id="password" class="fillout" placeholder="Password"><p id="error"></p><input type="submit" class="submit-log log"><br/><hr/><br/><h1 class="signup log-title">Sign Up</h1><input type="text" id="username1" class="fillout" name="username" placeholder="Username"><input type="email" id="email" class="fillout" name="email" placeholder="Email"><input type="password" id= "passcode" class="fillout" name="password" placeholder="Password"><input type="password" class="fillout" id="confirm" name="confirm" placeholder="Confirm Password"><p>By creating an account I agree to the <a href="../terms" class="terms" >terms and conditions</a> of MyNewAnimeList</p><input type="submit" class="submit-log register"></div><div class="dark"></div>');
+  if (document.cookie) {
+    profile = parse(document.cookie);
+  } else {
+    profile.username = 'Profile';
+  };
+
+  $('body').prepend('<nav id="navbar"><div id="brand"> <a href="#">Anime</a></div><a class="item" id="list" href="../home">List</a><a class="item" id="submit" href="../submit">Submit</a><a class="item" id="Profile" href="../profile">' + profile.username + '</a><a href="#" class="item none" id="login">Login/Sign up</a><a href="#" class="item none" id="logout">Logout</a></nav><div class="login"><a href="#" id="exit">  <div class="exit">+</div></a><h1 class="log-title">Login</h1><input type="text" id="username"class="fillout" placeholder="Username"><input type="password" id="password" class="fillout" placeholder="Password"><p id="error"></p><input type="submit" class="submit-log log"><br/><hr/><br/><h1 class="signup log-title">Sign Up</h1><input type="text" id="username1" class="fillout" name="username" placeholder="Username"><input type="email" id="email" class="fillout" name="email" placeholder="Email"><input type="password" id= "passcode" class="fillout" name="password" placeholder="Password"><input type="password" class="fillout" id="confirm" name="confirm" placeholder="Confirm Password"><p>By creating an account I agree to the <a href="../terms" class="terms" >terms and conditions</a> of MyNewAnimeList</p><input type="submit" class="submit-log register"></div><div class="dark"></div>');
   if (document.cookie) {
     $('#login').addClass('none');
     $('#logout').removeClass('none');
