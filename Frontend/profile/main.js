@@ -22,8 +22,36 @@ $(document).ready(() => {
       },
       data: profile,
       success: (res) => {
-        $('title').html(res.username);
+        console.log(res);
+        if (typeof res == 'object') {
+          var id = res.vote_id;
+          $('#spinner').css('display', 'none');
+          $('title').html(res.username);
+          $('.name').html(res.username + "'s favourite anime");
+          $('.name').css('display', 'block');
+          $.ajax({
+            method: 'POST',
+            url: '/anime',
+            headers: {
+              contentType: 'application/json',
+            },
+            data: {
+              id: id,
+            },
+            success: (resp) => {
+              console.log(resp);
+              console.log(resp.thumbnail + resp.title);
+              $('.container').append('<div class="content"> <a href="' + resp.thumbnail + '" target="_blank"><img src = "' + resp.thumbnail + '"alt = ""class = "thumbnail" ></a> <div class="contents"><h3 class = "title" >' + resp.title + '</h3></div> </div>');
+            },
+          });
+        };
       },
     });
-  }
+  } else {
+    $('#spinner').css('display', 'none');
+    $('.dark').css('display', 'block');
+    setTimeout(() => {
+      $('.login').fadeIn(150);
+    }, 200);
+  };
 });

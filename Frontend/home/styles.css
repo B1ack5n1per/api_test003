@@ -19,7 +19,7 @@ h1 {
   background: var(--Light);
   margin: 0.5rem;
   border-radius: 3px;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   padding-bottom: 1rem;
   display: flex;
   flex-direction: row;

@@ -7,8 +7,10 @@
 }
 
 body {
+  height: 100%;
   background: var(--Primary);
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  overflow: scroll;
 }
 
 a {
@@ -212,10 +214,15 @@ hr {
   z-index: 2;
   filter: opacity(80%);
   display:none;
+  padding: 10rem;
 }
 
 #error {
   color: var(--White);
+}
+
+.terms {
+  text-decoration: underline;
 }
 
 @keyframes spinner {

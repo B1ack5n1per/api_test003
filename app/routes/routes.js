@@ -15,7 +15,23 @@ module.exports = function (app, db) {
   const cookieParser = require('cookie-parser');
   app.use(cookieParser());
   app.get('/anime', (req, res) => {
-    var cursor = db.collection('anime').find().toArray((err, results) => {
+    db.collection('anime').find().toArray((err, results) => {
+      for (let i = 0; i < results.length; i++) {
+        db.collection('acounts').find({ vote_id: (i + 1) }).toArray((er, result) => {
+          db.collection('anime').updateOne(results[i], { $set: { votes: result.length } }, (err, resul) => {});
+        });
+      }
+
+      res.send(results);
+    });
+  });
+  app.post('/anime', (req, res) => {
+    let details = Number(req.body.id);
+    let query = {
+      id: details,
+    };
+    console.log(query);
+    var cursor = db.collection('anime').findOne(query, (err, results) => {
       res.send(results);
     });
   });
@@ -69,11 +85,14 @@ module.exports = function (app, db) {
     let details = req.body;
     console.log(details);
     db.collection('acounts').findOne(details, (err, results) => {
+      console.log(results);
       if (results) {
         let result = results;
         delete result.password;
         console.log(result);
         res.send(result);
+      } else {
+        res.send('Please Sign In');
       };
     });
   });

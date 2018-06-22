@@ -26,7 +26,9 @@ function init() {
 
 app.use(express.static(path.join(__dirname, 'Frontend')));
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.get('/terms', (req, res) => {
+  res.sendFile(path.join(__dirname, '/Frontend/terms.txt'));
+});
 MongoClient.connect(db.url, (err, database) => {
   if (err) return console.log(err);
   require('./app/routes/routes')(app, database);
