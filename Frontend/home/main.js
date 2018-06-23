@@ -64,7 +64,7 @@ $(document).ready(() => {
                 alert('Your favourite anime was set to ' + res.title);
                 setTimeout(() => {
                   window.location = '../home';
-                }, 1500);
+                }, 3000);
               },
           });
         } else {
