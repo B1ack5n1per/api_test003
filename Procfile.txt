@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 web: node index.js
-=======
-web: node index.js
->>>>>>> ec3ea128864ee9e4c37da1bb16a2a4fdad156a6c
