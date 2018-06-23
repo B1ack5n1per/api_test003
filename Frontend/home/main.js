@@ -43,37 +43,34 @@ $(document).ready(() => {
       add(datai);
       loaded = true;
       console.log(profile.username);
-      for (let i = 0; i < datai.length; i++) {
-        $('.vote').eq(i).on('click', {
-          value: i,
-        }, function (event) {
-          console.log(event.data.value);
-          if (profile.username != 'Profile') {
-            $('#spinner').css('display', 'block');
-            $('.dark').css('z-index', '1');
-            $('.dark').fadeIn(0);
-            $.ajax({
-              method: 'PUT',
-              url: '/vote',
-              headers: {
-                contentType: 'aplication/json',
+      $('.vote').on('click', function (event) {
+        console.log($(event.target).attr('data-id'));
+        let id =  $(event.target).attr('data-id');
+        if (profile.username != 'Profile') {
+          $('#spinner').css('display', 'block');
+          $('.dark').css('z-index', '1');
+          $('.dark').fadeIn(0);
+          $.ajax({
+            method: 'PUT',
+            url: '/vote',
+            headers: {
+              contentType: 'aplication/json',
+            },
+            data: {
+              username: profile.username,
+              id: id,
+            },
+            success: (res) => {
+                alert('Your favourite anime was set to ' + res.title);
+                setTimeout(() => {
+                  window.location = '../home';
+                }, 1500);
               },
-              data: {
-                username: profile.username,
-                id: event.data.value,
-              },
-              success: (res) => {
-                  alert('Your favourite anime was set to ' + res.title);
-                  $('.dark').fadeOut(0);
-                  $('#spinner').css('display', 'none');
-                  $('.dark').css('z-index', '3');
-                },
-            });
-          } else {
-            alert('Please login to vote');
-          };
-        });
-      };
+          });
+        } else {
+          alert('Please login to vote');
+        };
+      });
     },
   });
 });

@@ -18,7 +18,7 @@ module.exports = function (app, db) {
     db.collection('anime').find().toArray((err, results) => {
       console.log(results.length);
       for (let i = 0; i < results.length; i++) {
-        let details = { vote_id: (i + 1), };
+        let details = { vote_id: (i), };
         console.log(details);
         db.collection('acounts').find(details).toArray((er, result) => {
           console.log(result.length);
@@ -112,7 +112,7 @@ module.exports = function (app, db) {
     let detail = {
       username: details.username,
       password: details.password,
-      vote_id: 0,
+      vote_id: -1,
       email: details.email,
       admin: false,
     };
@@ -134,12 +134,11 @@ module.exports = function (app, db) {
   app.put('/vote', (req, res) => {
     let voteId = Number(req.body.id);
     let user = req.body.username;
-    voteId += 1;
     let details = {
       username: user,
     };
     let detail = {
-      id: Number(voteId) + 1,
+      id: Number(voteId),
     };
     console.log(voteId + ' ' + user);
     db.collection('acounts').updateOne(details, {
@@ -148,7 +147,6 @@ module.exports = function (app, db) {
       },
     }, (err, results) => {
       if (results) {
-        detail.id = Number(detail.id) - 2;
         console.log(detail);
         db.collection('anime').findOne(detail, (err, result) => {
           console.log(result);
