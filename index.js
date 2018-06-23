@@ -29,6 +29,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/terms', (req, res) => {
   res.sendFile(path.join(__dirname, '/Frontend/terms.txt'));
 });
+app.get('/', (req, res) => {
+  res.redirect('/home');
+});
 MongoClient.connect(db.url, (err, database) => {
   if (err) return console.log(err);
   require('./app/routes/routes')(app, database);
